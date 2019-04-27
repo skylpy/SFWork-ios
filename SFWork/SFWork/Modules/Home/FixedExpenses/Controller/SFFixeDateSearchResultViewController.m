@@ -69,6 +69,27 @@
     
 }
 
+- (void)outExcelRequestWithStartDate:(NSString *)startDate EndDate:(NSString *)endDate{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc]initWithDictionary:_reuestDic];
+    [params setObject:@(1) forKey:@"isDesc"];
+    [params setObject:[SFCommon getNULLString:startDate] forKey:@"startDate"];
+    [params setObject:[SFCommon getNULLString:endDate] forKey:@"endDate"];
+    [params setObject:_selectTag == 2002?@(YES):@(NO) forKey:@"isHistory"];
+    [MBProgressHUD showActivityMessageInView:@""];
+    [SFBaseModel BPOST:BASE_URL(@"/finace/bill/billList/group") parameters:params success:^(NSURLSessionDataTask * _Nonnull task, SFBaseModel * _Nonnull model) {
+        if (model.status == 200) {
+            [SFCommon ShowAlterViewWithTitle:@"导出已成功" IsShowCancel:NO Message:@"已经导出Excel文档到“财务文件\n”模块中的“最近上传”中了" RootVC:self SureBlock:^{
+                
+            }];
+        }
+        NSLog(@"%@",self.dataArray);
+        [MBProgressHUD hideHUD];
+        NSLog(@"%@",self.dataArray);
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+    }];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SFFixeDetailViewController * finaDetailVC = [SFFixeDetailViewController new];
     finaDetailVC.title = @"收入（借方）详情";
@@ -110,7 +131,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     SFIncomeHeadView * headView = [[[NSBundle mainBundle]loadNibNamed:@"SFIncomeHeadView" owner:nil options:nil]firstObject];
     headView.outBtn.hidden = NO;
-    
+    SFBillHomeModel * model = self.dataArray[section];
+    headView.outBlock = ^{
+        NSDate * date = [SFCommon stringToDate:model.groupDate];
+        NSInteger currDays = [SFCommon getDateMonthDay:date];
+        [self outExcelRequestWithStartDate:[NSString stringWithFormat:@"%@-01",model.groupDate] EndDate:[NSString stringWithFormat:@"%@-%ld",model.groupDate,currDays]];
+    };
     return headView;
 }
 

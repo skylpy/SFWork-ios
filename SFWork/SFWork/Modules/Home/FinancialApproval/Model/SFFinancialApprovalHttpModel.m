@@ -34,6 +34,25 @@
 }
 
 /**
+ * des://获取我的审批列表，所有
+ * author:SkyWork
+ */
++(void)myApproveBillALL:(NSDictionary *)prame
+                   success:(void (^)(NSArray * list))success
+                   failure:(void (^)(NSError *))failure {
+    
+    [SFBaseModel BPOST:BASE_URL(myApproveBillfinace) parameters:prame success:^(NSURLSessionDataTask * _Nonnull task, SFBaseModel * _Nonnull model) {
+        
+        
+        NSArray * array1 = [NSArray modelArrayWithClass:[SFFinancialModel class] json:model.result[@"list"]];
+        !success?:success(array1);
+        
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        !failure?:failure(error);
+    }];
+}
+
+/**
  * des://获取我的发起列表(分组数据)，组内列表数据最多5条
  * author:SkyWork
  */
@@ -55,6 +74,7 @@
         !failure?:failure(error);
     }];
 }
+
 
 /**
  * des:财务单据审批处理

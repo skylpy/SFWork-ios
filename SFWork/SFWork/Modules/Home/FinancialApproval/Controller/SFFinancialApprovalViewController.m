@@ -72,7 +72,6 @@
     }];
     [self.tableView registerNib:[UINib nibWithNibName:@"SFIncomeTableViewCell" bundle:nil] forCellReuseIdentifier:@"SFIncomeTableViewCell"];
 
-   
 }
 
 

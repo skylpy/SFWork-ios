@@ -105,7 +105,7 @@
 }
 
 + (NSArray *)shareAddSixCostModel:(SFFinancialModel *)model{
-    SFBillSearchModel * model1 = [SFBillSearchModel manageTitle:@"类别：" withDestitle:model.category withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:1 withValue:@"" withPersons:@[]];
+    SFBillSearchModel * model1 = [SFBillSearchModel manageTitle:@"类别：" withDestitle:@"111" withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:1 withValue:@"" withPersons:@[]];
     SFBillSearchModel * model2 = [SFBillSearchModel manageTitle:@"业务日期：" withDestitle:model.bizDate withPlaceholder:@"请选择" withStars:@"" withDescolor:@"" withClick:NO withType:1 withValue:@"" withPersons:@[]];
     SFBillSearchModel * model3 = [SFBillSearchModel manageTitle:@"来往业务：" withDestitle:[SFCommon getNULLString:model.dealing] withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:1 withValue:@"" withPersons:@[]];
     SFBillSearchModel * model4 = [SFBillSearchModel manageTitle:@"记账方式：" withDestitle:model.chargeType withPlaceholder:@"请选择" withStars:@"" withDescolor:@"" withClick:NO withType:1 withValue:@"" withPersons:@[]];
@@ -125,7 +125,7 @@
 }
 
 + (NSArray *)shareAddFinanSixCostModel{
-    SFBillSearchModel * model1 = [SFBillSearchModel manageTitle:@"类别：" withDestitle:@"" withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:NO withType:8 withValue:@"" withPersons:@[]];
+    SFBillSearchModel * model1 = [SFBillSearchModel manageTitle:@"类别：" withDestitle:@"" withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:8 withValue:@"" withPersons:@[]];
     SFBillSearchModel * model2 = [SFBillSearchModel manageTitle:@"业务日期：" withDestitle:@"" withPlaceholder:@"请输入" withStars:@"*" withDescolor:@"" withClick:NO withType:9 withValue:@"" withPersons:@[]];
     SFBillSearchModel * model3 = [SFBillSearchModel manageTitle:@"来往业务：" withDestitle:@"" withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:10 withValue:@"" withPersons:@[]];
     SFBillSearchModel * model4 = [SFBillSearchModel manageTitle:@"记账方式：" withDestitle:@"" withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:11 withValue:@"" withPersons:@[]];
@@ -186,7 +186,7 @@
 }
 
 + (NSArray *)addFinaSixModel {
-    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"收入金额：" withDetitle:@"" withValue:[SFInstance shareInstance].userInfo._id withPlaceholder:@"请输入" withClick:YES];
+    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"收入金额：" withDetitle:@"" withValue:@"" withPlaceholder:@"请输入" withClick:YES];
     SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"结账方式：" withDetitle:@"" withValue:@"" withPlaceholder:@"请输入" withClick:YES];
     SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"单价：" withDetitle:@"" withValue:@"" withPlaceholder:@"请输入" withClick:YES];
     SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"数量：" withDetitle:@"" withValue:@"" withPlaceholder:@"请输入" withClick:YES];

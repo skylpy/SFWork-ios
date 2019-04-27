@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString * endDateStr;
 @property (copy, nonatomic) NSMutableDictionary * reuestDic;
 @property (copy, nonatomic) NSString * titleStr;
+@property (nonatomic) NSInteger selectTag;//2001支出，收入  2002 历史记录
 @end
 
 NS_ASSUME_NONNULL_END

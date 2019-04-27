@@ -8,6 +8,7 @@
 
 #import "SFHistoryIncomeViewController.h"
 #import "SFShowAnsEditIncomeViewController.h"
+#import "SFFinancialApprovalingViewController.h"
 #import "SFIncomeTableViewCell.h"
 #import "FromDateSelectDatePick.h"
 #import "SFBillHomeModel.h"
@@ -45,11 +46,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    SFShowAnsEditIncomeViewController * svc = [SFShowAnsEditIncomeViewController new];
-    svc.title = [self.title containsString:@"支出"]?@"支出（贷方）详情":@"收入（借方）详情";
     SFBillListModel * model = self.dataArray[indexPath.row];
-    svc.showModel = model;
-    [self.navigationController pushViewController:svc animated:YES];
+    if (_bizTypes) {
+        SFFinancialApprovalingViewController * svc = [SFFinancialApprovalingViewController new];
+        svc.f_id = model.ID;
+        svc.title = _showDetailStr;
+        svc.fmodel = model;
+        svc.state = @"1";
+        [self.navigationController pushViewController:svc animated:YES];
+    }else{
+        SFShowAnsEditIncomeViewController * svc = [SFShowAnsEditIncomeViewController new];
+        
+        svc.showModel = model;
+        if (_showDetailStr) {
+            svc.title = _showDetailStr;
+        }else{
+            svc.title = [self.title containsString:@"支出"]?@"支出（贷方）详情":@"收入（借方）详情";
+        }
+        [self.navigationController pushViewController:svc animated:YES];
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

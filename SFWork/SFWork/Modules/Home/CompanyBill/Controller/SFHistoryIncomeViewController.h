@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SFHistoryIncomeViewController : SFRootViewController
+@property (copy, nonatomic) NSString * showDetailStr;
+@property (copy, nonatomic) NSString * bizTypes;
 @property (copy, nonatomic) NSMutableDictionary * params;
 @end
 

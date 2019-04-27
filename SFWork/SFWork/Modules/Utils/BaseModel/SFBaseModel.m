@@ -40,7 +40,7 @@
 }
 
 + (void)BPOST:(NSString *)urlString parameters:(id)params success:(void (^)(NSURLSessionDataTask *, SFBaseModel *))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    
+    NSLog(@"===========请求数组%@",params);
     [HttpManager POST:urlString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSLog(@"请求成功 === %@ == %@", task.response, responseObject);

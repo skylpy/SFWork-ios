@@ -402,6 +402,8 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
             SFHistoryIncomeViewController * hisVC = [SFHistoryIncomeViewController new];
             hisVC.title = @"搜索结果";
             hisVC.params = [self saveExpense];
+            hisVC.bizTypes = _bizTypes;
+            hisVC.showDetailStr = _showDetailStr;
             [self.navigationController pushViewController:hisVC animated:YES];
         }];
     }
@@ -445,57 +447,57 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
             if (model.type == 5) {
                 for (SFApprpvalModel * appmodel in model.persons) {
                     
-                    if ([appmodel.title isEqualToString:@"收入金额："]) {
-                        [dict setValue:appmodel.detitle forKey:@"amount"];
+                    if ([appmodel.title isEqualToString:@"收入金额："]&&appmodel.detitle.length>0) {
+                        [dict setValue:@(appmodel.detitle.integerValue) forKey:@"amount"];
                     }
-                    if ([appmodel.title isEqualToString:@"结账方式："]) {
+                    if ([appmodel.title isEqualToString:@"结账方式："]&&appmodel.detitle.length>0) {
                         [dict setValue:appmodel.detitle forKey:@"payType"];
                     }
-                    if ([appmodel.title isEqualToString:@"单价："]) {
-                        [dict setValue:appmodel.detitle forKey:@"price"];
+                    if ([appmodel.title isEqualToString:@"单价："]&&appmodel.detitle.length>0) {
+                        [dict setValue:@(appmodel.detitle.integerValue) forKey:@"price"];
                     }
-                    if ([appmodel.title isEqualToString:@"数量："]) {
-                        [dict setValue:appmodel.detitle forKey:@"num"];
+                    if ([appmodel.title isEqualToString:@"数量："]&&appmodel.detitle.length>0) {
+                        [dict setValue:@(appmodel.detitle.integerValue) forKey:@"num"];
                     }
-                    if ([appmodel.title isEqualToString:@"凭证字："]) {
+                    if ([appmodel.title isEqualToString:@"凭证字："]&&appmodel.detitle.length>0) {
                         [dict setValue:appmodel.detitle forKey:@"voucherWord"];
                     }
-                    if ([appmodel.title isEqualToString:@"凭证号："]) {
+                    if ([appmodel.title isEqualToString:@"凭证号："]&&appmodel.detitle.length>0) {
                         [dict setValue:appmodel.detitle forKey:@"voucherNo"];
                     }
-                    if ([appmodel.title isEqualToString:@"经办人："]) {
+                    if ([appmodel.title isEqualToString:@"经办人："]&&appmodel.value.length>0) {
                         [dict setValue:appmodel.value forKey:@"operatorId"];
                     }
-                    if ([appmodel.title isEqualToString:@"制表人："]) {
+                    if ([appmodel.title isEqualToString:@"制表人："]&&appmodel.value.length>0) {
                         [dict setValue:appmodel.value forKey:@"listerId"];
                     }
-                    if ([appmodel.title isEqualToString:@"审核人："]) {
+                    if ([appmodel.title isEqualToString:@"审核人："]&&appmodel.value.length>0) {
                         [dict setValue:appmodel.value forKey:@"auditorId"];
                     }
-                    if ([appmodel.title isEqualToString:@"审批人："]) {
+                    if ([appmodel.title isEqualToString:@"审批人："]&&appmodel.value.length>0) {
                         [dict setValue:appmodel.value forKey:@"approverId"];
                     }
                 }
             }else{
                 if ([model.title isEqualToString:@"编号："]) {
 //                    [dict setValue:model.destitle forKey:@"detail"];
-                }else if ([model.title isEqualToString:@"类别："]) {
+                }else if ([model.title isEqualToString:@"类别："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"category"];
-                }else if ([model.title isEqualToString:@"业务日期："]) {
+                }else if ([model.title isEqualToString:@"业务日期："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"bizDate"];
-                }else if ([model.title isEqualToString:@"来往业务："]) {
+                }else if ([model.title isEqualToString:@"来往业务："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"dealing"];
-                }else if ([model.title isEqualToString:@"记账方式："]) {
+                }else if ([model.title isEqualToString:@"记账方式："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"chargeType"];
-                }else if ([model.title isEqualToString:@"关键词："]) {
+                }else if ([model.title isEqualToString:@"关键词："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"keyword"];
-                }else if ([model.title isEqualToString:@"客户："]) {
+                }else if ([model.title isEqualToString:@"客户："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"customer"];
-                }else if ([model.title isEqualToString:@"出纳人："]) {
+                }else if ([model.title isEqualToString:@"出纳人："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"cashierId"];
-                }else if ([model.title isEqualToString:@"摘要："]) {
+                }else if ([model.title isEqualToString:@"摘要："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"remark"];
-                }else if ([model.title isEqualToString:@"科目："]) {
+                }else if ([model.title isEqualToString:@"科目："]&&model.destitle.length>0) {
                     [dict setValue:model.destitle forKey:@"subject"];
                 }
                 
@@ -507,7 +509,12 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         }
     }
     
-    [dict setObject:[self.title containsString:@"收入"]?@[@"DEBIT"]:@[@"CREDIT"] forKey:@"dcFlags"];
+    if (self.bizTypes) {
+        [dict setObject:@[[SFCommon getNULLString:self.bizTypes]] forKey:@"bizTypes"];
+    }else{
+        [dict setObject:[self.title containsString:@"收入"]?@[@"DEBIT"]:@[@"CREDIT"] forKey:@"dcFlags"];
+    }
+    
     
 //
 //    [MBProgressHUD showActivityMessageInWindow:@""];

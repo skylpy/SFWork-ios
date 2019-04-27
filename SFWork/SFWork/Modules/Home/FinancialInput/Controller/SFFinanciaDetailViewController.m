@@ -137,16 +137,16 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     [self topView];
 
     
-    UIButton * redIconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    redIconBtn.frame = CGRectMake(0, 0, 65, 44);
-    redIconBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    redIconBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    redIconBtn.tag = 1000;
-    [redIconBtn setTitle:@"编辑" forState:0];
-    [redIconBtn setTitleColor:[UIColor colorWithRed:40/255.0 green:179/255.0 blue:139/255.0 alpha:1.0] forState:0];
-    [redIconBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * redItem = [[UIBarButtonItem alloc]initWithCustomView:redIconBtn];
-    self.navigationItem.rightBarButtonItem = redItem;
+//    UIButton * redIconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    redIconBtn.frame = CGRectMake(0, 0, 65, 44);
+//    redIconBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//    redIconBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+//    redIconBtn.tag = 1000;
+//    [redIconBtn setTitle:@"编辑" forState:0];
+//    [redIconBtn setTitleColor:[UIColor colorWithRed:40/255.0 green:179/255.0 blue:139/255.0 alpha:1.0] forState:0];
+//    [redIconBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem * redItem = [[UIBarButtonItem alloc]initWithCustomView:redIconBtn];
+//    self.navigationItem.rightBarButtonItem = redItem;
 }
 
 - (void)rightBtnAction:(UIButton *)sender{

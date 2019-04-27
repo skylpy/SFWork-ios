@@ -45,8 +45,8 @@
     
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 //    [dict setValue:@"" forKey:@"bizTypes"];
-    [dict setValue:@"1" forKey:@"pageNum"];
-    [dict setValue:@"15" forKey:@"pageSize"];
+//    [dict setValue:@"1" forKey:@"pageNum"];
+//    [dict setValue:@"15" forKey:@"pageSize"];
 //    [dict setValue:@"" forKey:@"startDate"];
 //    [dict setValue:@"" forKey:@"endDate"];
     

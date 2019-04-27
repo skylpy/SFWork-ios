@@ -130,16 +130,16 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     [self topView];
     
     
-    UIButton * redIconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    redIconBtn.frame = CGRectMake(0, 0, 65, 44);
-    redIconBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    redIconBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    redIconBtn.tag = 1000;
-    [redIconBtn setTitle:@"编辑" forState:0];
-    [redIconBtn setTitleColor:[UIColor colorWithRed:40/255.0 green:179/255.0 blue:139/255.0 alpha:1.0] forState:0];
-    [redIconBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * redItem = [[UIBarButtonItem alloc]initWithCustomView:redIconBtn];
-    self.navigationItem.rightBarButtonItem = redItem;
+//    UIButton * redIconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    redIconBtn.frame = CGRectMake(0, 0, 65, 44);
+//    redIconBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//    redIconBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+//    redIconBtn.tag = 1000;
+//    [redIconBtn setTitle:@"编辑" forState:0];
+//    [redIconBtn setTitleColor:[UIColor colorWithRed:40/255.0 green:179/255.0 blue:139/255.0 alpha:1.0] forState:0];
+//    [redIconBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem * redItem = [[UIBarButtonItem alloc]initWithCustomView:redIconBtn];
+//    self.navigationItem.rightBarButtonItem = redItem;
 }
 
 
@@ -427,6 +427,32 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         
         for (SFBillSearchModel * model in array) {
             
+            if (model.type == 2) {
+                for (int i = 0; i < model.persons.count; i ++) {
+                    
+                    SFSearchApprpvalModel * mod = model.persons[i];
+                    if ([mod.title isEqualToString:@"收入金额："]) {
+                        
+                        [dicts setValue:mod.detitle forKey:@"amount"];
+                    }
+                    if ([mod.title isEqualToString:@"结账方式："]) {
+                        [dicts setValue:mod.detitle forKey:@"payType"];
+                    }
+                    if ([mod.title isEqualToString:@"单价："]) {
+                        [dicts setValue:mod.detitle forKey:@"price"];
+                    }
+                    if ([mod.title isEqualToString:@"数量："]) {
+                        [dicts setValue:mod.detitle forKey:@"num"];
+                    }
+                    if ([mod.title isEqualToString:@"凭证字："]) {
+                        [dicts setValue:mod.detitle forKey:@"voucherWord"];
+                    }
+                    if ([mod.title isEqualToString:@"凭证号："]) {
+                        [dicts setValue:mod.detitle forKey:@"voucherNo"];
+                    }
+                }
+            }
+            
             if (model.type == 4 || model.type == 5) {
                 
                 NSMutableDictionary * dict1 = [NSMutableDictionary dictionary];
@@ -453,6 +479,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
                     NSLog(@"%@",dict11);
                     [arrays addObject:dict11];
                 }
+                
                
                 if (model.type == 5) {
                     NSMutableDictionary * dict11 = [NSMutableDictionary dictionary];
@@ -461,9 +488,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
                  
                     [arrays addObject:dict11];
                 }
-                
-                
-                
+
             }
         }
     }
@@ -486,6 +511,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
             [dicts setValue:dic[@"processorId"] forKey:@"cashierId"];
         }
     }
+    [dicts setObject:self.imageArray forKey:@"photos"];
     NSLog(@" ======= %@>>>>",dicts);
     
 

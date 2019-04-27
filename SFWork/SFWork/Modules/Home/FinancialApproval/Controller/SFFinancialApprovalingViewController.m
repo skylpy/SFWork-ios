@@ -150,29 +150,29 @@ static NSString * const SFSelectAapprovalPersonCellID = @"SFSelectAapprovalPerso
     self.index = 1;
     self.allMoney = 0;
     self.isBack = YES;
-    self.title = self.fType == FinancialApprovalType ? @"收据详情":@"收据详情";
+    if (self.title.length == 0) {
+        self.title = self.fType == FinancialApprovalType ? @"收据详情":@"收据详情";
+    }
+    
     self.view.backgroundColor = bgColor;
     [self.view addSubview:self.tableView];
+    float bottomHeight = - 60.0;
+    if (_state != nil) {
+        bottomHeight = SafeAreaBottomHeight;
+        self.bottomView.hidden = YES;
+    }
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+
         make.bottom.equalTo(self.view.mas_bottom);
+
+        make.bottom.equalTo(self.view.mas_bottom).offset(bottomHeight);
+
         make.left.right.equalTo(self.view);
         make.top.mas_equalTo(35);
     }];
     
     [self.view addSubview:self.saveButton];
     [self topView];
-    
-    
-    UIButton * redIconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    redIconBtn.frame = CGRectMake(0, 0, 65, 44);
-    redIconBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    redIconBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    redIconBtn.tag = 1000;
-    [redIconBtn setTitle:@"编辑" forState:0];
-    [redIconBtn setTitleColor:[UIColor colorWithRed:40/255.0 green:179/255.0 blue:139/255.0 alpha:1.0] forState:0];
-    [redIconBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * redItem = [[UIBarButtonItem alloc]initWithCustomView:redIconBtn];
-    self.navigationItem.rightBarButtonItem = redItem;
     
     @weakify(self)
     [[self.rejectButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -211,10 +211,6 @@ static NSString * const SFSelectAapprovalPersonCellID = @"SFSelectAapprovalPerso
         [MBProgressHUD hideHUD];
         [MBProgressHUD showTipMessageInView:@"审批失败"];
     }];
-}
-
-- (void)rightBtnAction:(UIButton *)sender{
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -394,6 +390,7 @@ static NSString * const SFSelectAapprovalPersonCellID = @"SFSelectAapprovalPerso
 }
 
 - (void)topView{
+
     UIView * topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWidth, 35)];
     topView.backgroundColor = [UIColor colorWithRed:255/255.0 green:245/255.0 blue:228/255.0 alpha:1.0];
     [self.view addSubview:topView];
@@ -407,7 +404,20 @@ static NSString * const SFSelectAapprovalPersonCellID = @"SFSelectAapprovalPerso
     }];
     
     UILabel * topTitleLB = [[UILabel alloc]initWithFrame:CGRectZero];
-    topTitleLB.text = @"该账款详情由梁敏浩于2018-12-16创建";
+    if (_state == nil) {
+        if ([_fmodel.processResult isEqualToString:@"APPROVED"]) {
+            topTitleLB.text = @"这条账款正在走审批流程，等待完成";
+        }else if ([_fmodel.processResult isEqualToString:@"REJECTED"]){
+            topTitleLB.text = @"此账款被驳回，等待修改后再次提交";
+        }else if ([_fmodel.processResult isEqualToString:@"CANCELED"]){
+            topTitleLB.text = [NSString stringWithFormat:@""];
+        }else{
+            topTitleLB.text = @"此账款已经处理完成，已经录入公司总账";
+        }
+    }else{
+        topTitleLB.text = [NSString stringWithFormat:@"该账款详情由%@于%@创建",_fmodel.listerName,_fmodel.createTime];
+    }
+    
     topTitleLB.font = [UIFont systemFontOfSize:13];
     topTitleLB.textColor = [UIColor colorWithRed:249/255.0 green:106/255.0 blue:14/255.0 alpha:1.0];
     [topView addSubview:topTitleLB];

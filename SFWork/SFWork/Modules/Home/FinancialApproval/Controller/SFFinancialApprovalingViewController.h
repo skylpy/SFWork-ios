@@ -7,6 +7,7 @@
 //
 
 #import "SFRootViewController.h"
+#import "SFFinancialApprovalHttpModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,8 +19,8 @@ typedef NS_ENUM(NSInteger, FinancialType){
 };
 
 @interface SFFinancialApprovalingViewController : UIViewController
-@property (strong, nonatomic) NSString * type;//1
-
+@property (strong, nonatomic) NSString * state;//1
+@property (nonatomic, strong) SFFinancialModel *fmodel;
 @property (nonatomic, assign) FinancialType fType;
 @property (nonatomic, copy) NSString * f_id;
 @end

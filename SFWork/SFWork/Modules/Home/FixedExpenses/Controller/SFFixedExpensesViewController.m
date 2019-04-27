@@ -8,8 +8,10 @@
 
 #import "SFFixedExpensesViewController.h"
 #import "SFFixeDateSearchResultViewController.h"
+#import "SFFinancialApprovalingViewController.h"
 #import "SFFixeDetailViewController.h"
 #import "SFFixeSearchViewController.h"
+#import "SFSearchDetailViewController.h"
 #import "FromDateSelectDatePick.h"
 #import "SFTallyTypeSelectView.h"
 #import "SFIncomeTableViewCell.h"
@@ -60,29 +62,24 @@
     }];
 }
 
-- (void)outExcelRequest{
+- (void)outExcelRequestWithStartDate:(NSString *)startDate EndDate:(NSString *)endDate{
     NSMutableDictionary * params = [self getCurrPageInterface];
     [params setObject:@(1) forKey:@"isDesc"];
+    [params setObject:[SFCommon getNULLString:startDate] forKey:@"startDate"];
+    [params setObject:[SFCommon getNULLString:endDate] forKey:@"endDate"];
     [params setObject:_selectBtn.tag == 2002?@(YES):@(NO) forKey:@"isHistory"];
+    [MBProgressHUD showActivityMessageInView:@""];
     [SFBaseModel BPOST:BASE_URL(@"/finace/bill/billList/group") parameters:params success:^(NSURLSessionDataTask * _Nonnull task, SFBaseModel * _Nonnull model) {
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-        if (self.selectBtn.tag == 2002) {
-            if (self.pageNum == 1) {
-                [self.historyArray removeAllObjects];
-            }
-            [self.historyArray addObjectsFromArray:[NSArray modelArrayWithClass:[SFBillHomeModel class] json:model.result[@"list"]]];
-        }else{
-            if (self.pageNum == 1) {
-                [self.dataArray removeAllObjects];
-            }
-            [self.dataArray addObjectsFromArray:[NSArray modelArrayWithClass:[SFBillHomeModel class] json:model.result[@"list"]]];
+        if (model.status == 200) {
+            [SFCommon ShowAlterViewWithTitle:@"导出已成功" IsShowCancel:NO Message:@"已经导出Excel文档到“财务文件\n”模块中的“最近上传”中了" RootVC:self SureBlock:^{
+                
+            }];
         }
-        
-        [self.tableView reloadData];
+        NSLog(@"%@",self.dataArray);
+        [MBProgressHUD hideHUD];
         NSLog(@"%@",self.dataArray);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideHUD];
     }];
 }
 
@@ -145,9 +142,14 @@
 
 - (void)rightBtnAction:(UIButton *)sender{
     if (sender.tag == 1000) {
-        SFFixeSearchViewController * fixSearchVC = [SFFixeSearchViewController new];
-        fixSearchVC.title = [NSString stringWithFormat:@"%@详细搜索",self.title];
-        [self.navigationController pushViewController:fixSearchVC animated:YES];
+//        SFFixeSearchViewController * fixSearchVC = [SFFixeSearchViewController new];
+//        fixSearchVC.title = [NSString stringWithFormat:@"%@详细搜索",self.title];
+//        [self.navigationController pushViewController:fixSearchVC animated:YES];
+        SFSearchDetailViewController * searDetailVC = [SFSearchDetailViewController new];
+        searDetailVC.title = [NSString stringWithFormat:@"%@详细搜索",self.title];
+        searDetailVC.bizTypes = [self getBizTypes];
+        searDetailVC.showDetailStr = [self getDetailTitle];
+        [self.navigationController pushViewController:searDetailVC animated:YES];
     }else{
         FromDateSelectDatePick * datePickView = [[[NSBundle mainBundle]loadNibNamed:@"FromDateSelectDatePick" owner:nil options:nil] firstObject];
         datePickView.frame = CGRectMake(0, 0, kWidth, kHeight);
@@ -157,7 +159,8 @@
             resultVC.titleStr = [self getTitle];
             resultVC.startDateStr = startDate;
             resultVC.endDateStr = endDate;
-            resultVC.reuestDic = self.requestDic;
+            resultVC.reuestDic = [self getCurrPageInterface];
+            resultVC.selectTag = self.selectBtn.tag;
             resultVC.title = @"日期筛选";
             [self.navigationController pushViewController:resultVC animated:YES];
             
@@ -191,9 +194,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    SFFixeDetailViewController * finaDetailVC = [SFFixeDetailViewController new];
-    finaDetailVC.title = @"收入（借方）详情";
-    [self.navigationController pushViewController:finaDetailVC animated:YES];
+
+    SFBillHomeModel * model = _selectBtn.tag == 2001?self.dataArray[indexPath.section]:self.historyArray[indexPath.section];
+    SFBillListModel * detailModel = model.billList[indexPath.row];
+    SFFinancialApprovalingViewController * svc = [SFFinancialApprovalingViewController new];
+    svc.f_id = detailModel.ID;
+    svc.title = [self getDetailTitle];
+    svc.fType = FinancialApprovalType;
+    svc.fmodel = detailModel;
+    svc.state = @"1";
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -234,6 +244,7 @@
     headView.outBlock = ^{
         NSDate * date = [SFCommon stringToDate:model.groupDate];
         NSInteger currDays = [SFCommon getDateMonthDay:date];
+        [self outExcelRequestWithStartDate:[NSString stringWithFormat:@"%@-01",model.groupDate] EndDate:[NSString stringWithFormat:@"%@-%ld",model.groupDate,currDays]];
     };
     headView.outBtn.hidden = NO;
     headView.timeLB.text = [SFCommon getNULLString:model.groupDate];
@@ -310,12 +321,28 @@
         make.left.equalTo(planFixedBtn.mas_right).offset(0);
         make.width.mas_equalTo(kWidth/2);
     }];
+    
+    if ([self.title containsString:@"固定"]) {
+        [planFixedBtn setTitle:@"计划支出" forState:0];
+        [historydBtn setTitle:@"历史支出" forState:0];
+    }
+    
+    if ([self.title containsString:@"应收"]) {
+        [planFixedBtn setTitle:@"计划应收" forState:0];
+        [historydBtn setTitle:@"历史记录" forState:0];
+    }
+    
+    if ([self.title containsString:@"应付"]) {
+        [planFixedBtn setTitle:@"计划应付" forState:0];
+        [historydBtn setTitle:@"历史支出" forState:0];
+    }
 
 }
 
 - (NSMutableDictionary *)getCurrPageInterface{
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
     _requestDic = params;
+    
     if ([self.title containsString:@"固定"]) {
         [params setObject:@[@"GZ"] forKey:@"bizTypes"];
         [params setObject:@(NO) forKey:@"isDesc"];
@@ -333,8 +360,24 @@
     return params;
 }
 
+- (NSString *)getBizTypes{
+    if ([self.title containsString:@"固定"]) {
+        return @"GZ";
+    }
+    
+    if ([self.title containsString:@"应收"]) {
+        return @"YS";
+    }
+    
+    if ([self.title containsString:@"应付"]) {
+        return @"YF";
+    }
+    return @"";
+}
+
 - (NSString *)getTitle{
     if ([self.title containsString:@"固定"]) {
+        
         return @"支出";
     }
     
@@ -343,7 +386,23 @@
     }
     
     if ([self.title containsString:@"应付"]) {
-       return @"return @"";";
+       return @"应付";
+    }
+    return @"";
+}
+
+- (NSString *)getDetailTitle{
+    if ([self.title containsString:@"固定"]) {
+        
+        return @"固定支出详情";
+    }
+    
+    if ([self.title containsString:@"应收"]) {
+        return @"应收账款详情";
+    }
+    
+    if ([self.title containsString:@"应付"]) {
+        return @"应付账款详情";;
     }
     return @"";
 }

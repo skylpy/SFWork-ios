@@ -19,6 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)myApproveBillGroups:(NSDictionary *)prame
                    success:(void (^)(NSArray * list))success
                    failure:(void (^)(NSError *))failure;
+/**
+ * des://获取我的审批列表，所有
+ * author:SkyWork
+ */
++(void)myApproveBillALL:(NSDictionary *)prame
+                success:(void (^)(NSArray * list))success
+                failure:(void (^)(NSError *))failure;
 
 /**
  * des://获取我的发起列表(分组数据)，组内列表数据最多5条

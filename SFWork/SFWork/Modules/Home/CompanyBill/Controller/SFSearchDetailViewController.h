@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFSearchDetailViewController : UIViewController
 //@property (nonatomic) NSInteger index; //101收入 102支出
+@property (strong, nonatomic) NSString * bizTypes;
+@property (strong, nonatomic) NSString * showDetailStr;
+@property (strong, nonatomic) NSString * urlStr;
 @end
 
 NS_ASSUME_NONNULL_END

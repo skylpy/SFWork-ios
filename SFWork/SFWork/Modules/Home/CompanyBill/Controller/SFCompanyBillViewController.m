@@ -70,6 +70,7 @@
     searchView.selectIndexBlock = ^(NSInteger index) {
         SFSearchDetailViewController * searDetailVC = [SFSearchDetailViewController new];
         searDetailVC.title = index==101?@"收入详细搜索":@"支出详细搜索";
+        searDetailVC.type = index==101?@"DEBIT":@"CREDIT";
         [self.navigationController pushViewController:searDetailVC animated:YES];
     };
     [[UIApplication sharedApplication].keyWindow addSubview:searchView];

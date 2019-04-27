@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SFFinanDetailSearchViewController : UIViewController
 
-
+@property (strong, nonatomic) NSString * bizTypes;
+@property (strong, nonatomic) NSString * showDetailStr;
+@property (nonatomic, copy) NSString *type;
 
 @end
 

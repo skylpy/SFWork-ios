@@ -16,6 +16,7 @@
 #import "SFDetailSearchView.h"
 #import "SFFinancialApprovalHttpModel.h"
 #import "SFFinancialApprovalingViewController.h"
+#import "SFSearchDetailViewController.h"
 
 @interface SFFinancialInputViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -101,12 +102,28 @@
         [searchView createItemWithTitleArray:@[@"收入（借方）",@"支出（贷方）",@"自定义账款"]];
         searchView.titleStr = @"请问您要搜索哪一项？";
         searchView.selectIndexBlock = ^(NSInteger index) {
-            SFFinanDetailSearchViewController * searDetailVC = [SFFinanDetailSearchViewController new];
+//            SFSearchDetailViewController * searDetailVC = [SFSearchDetailViewController new];
+//            searDetailVC.title = index==101?@"收入详细搜索":@"支出详细搜索";
+//            searDetailVC.type = index==101?@"DEBIT":@"CREDIT";
+//            [self.navigationController pushViewController:searDetailVC animated:YES];
+            
+            SFSearchDetailViewController * searDetailVC = [SFSearchDetailViewController new];
+            searDetailVC.title = [NSString stringWithFormat:@"%@详细搜索",self.title];
+            
             if (index == 101) {
+                searDetailVC.bizTypes = @"LS";
+                searDetailVC.type = @"LS";
+                searDetailVC.showDetailStr = @"收入（借方）详细搜索";
                 searDetailVC.title = @"收入（借方）详细搜索";
             }else if (index == 102){
+                searDetailVC.bizTypes =  @"LC";
+                searDetailVC.type = @"LC";
+                 searDetailVC.showDetailStr = @"支出（贷方）详细搜索";
                 searDetailVC.title = @"支出（贷方）详细搜索";
             }else if (index == 103){
+                searDetailVC.bizTypes = @"LO";
+                searDetailVC.type = @"LO";
+                searDetailVC.showDetailStr = @"自定义账款详细搜索";
                 searDetailVC.title = @"自定义账款详细搜索";
             }
             [self.navigationController pushViewController:searDetailVC animated:YES];
@@ -124,6 +141,37 @@
     
 }
 
+- (NSString *)getDetailTitle{
+    if ([self.title containsString:@"固定"]) {
+        
+        return @"固定支出详情";
+    }
+    
+    if ([self.title containsString:@"应收"]) {
+        return @"应收账款详情";
+    }
+    
+    if ([self.title containsString:@"应付"]) {
+        return @"应付账款详情";;
+    }
+    return @"";
+}
+
+- (NSString *)getBizTypes{
+    if ([self.title containsString:@"固定"]) {
+        return @"GZ";
+    }
+    
+    if ([self.title containsString:@"应收"]) {
+        return @"YS";
+    }
+    
+    if ([self.title containsString:@"应付"]) {
+        return @"YF";
+    }
+    return @"";
+}
+
 - (IBAction)addNewList:(UIButton *)sender {
     SFDetailSearchView * searchView = [[SFDetailSearchView alloc]initWithFrame:CGRectMake(0, 0,kWidth, kHeight)];
     [searchView createItemWithTitleArray:@[@"收入（借方）",@"支出（贷方）",@"自定义账款"]];
@@ -131,10 +179,13 @@
     searchView.selectIndexBlock = ^(NSInteger index) {
         SFFinanAddRecordViewController * addVC = [SFFinanAddRecordViewController new];
         if (index == 101) {
+            addVC.type = @"LS";
             addVC.title = @"新增收入（借方）";
         }else if (index == 102){
+            addVC.type = @"LC";
             addVC.title = @"新增支出（贷方）";
         }else if (index == 103){
+            addVC.type = @"LO";
             addVC.title = @"新增自定义账款";
         }
         [self.navigationController pushViewController:addVC animated:YES];

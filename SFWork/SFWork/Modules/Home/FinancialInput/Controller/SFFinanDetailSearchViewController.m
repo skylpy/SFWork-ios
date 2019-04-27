@@ -10,6 +10,7 @@
 #import "SFFinanSearchResultViewController.h"
 #import "SFSuperSuborViewController.h"
 #import "SFAddExpenseViewController.h"
+#import "SFHistoryIncomeViewController.h"
 #import "SFExpenseHttpModel.h"
 #import "SFPhotoSelectCell.h"
 #import "SFTextViewCell.h"
@@ -86,14 +87,8 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 
 - (BOOL)navigationShouldPopOnBackButton{
     
-    [UIAlertController alertTitle:@"确定离开" mesasge:@"数据未提交哦，离开后数据会丢失" preferredStyle:UIAlertControllerStyleAlert confirmHandler:^(UIAlertAction *alertAction) {
-        self.isBack = YES;
-        [self.navigationController popViewControllerAnimated:YES];
-    } cancleHandler:^(UIAlertAction *cancelAction) {
-        
-    } viewController:self];
-    
-    return self.isBack;
+  
+    return YES;
 }
 
 
@@ -192,7 +187,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     [cell setInputChacneClick:^(NSString * _Nonnull value) {
         @strongify(self)
         
-        [self calculatedAmount];
+        
     }];
     return cell;
 }
@@ -264,32 +259,6 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     [self.tableView reloadData];
 }
 
-- (void)calculatedAmount {
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        // 处理耗时操作的代码块...
-        
-        self.allMoney = 0;
-        for (NSArray * arr in self.dataArray) {
-            
-            for (SFBillSearchModel * mod  in arr) {
-                
-                if (mod.type == 1) {
-                    
-                    self.allMoney = [mod.destitle integerValue] + self.allMoney;
-                }
-            }
-        }
-        
-        //通知主线程刷新
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //回调或者说是通知主线程刷新，
-            NSLog(@"=== %ld",self.allMoney);
-            self.titleLabel.text = [NSString stringWithFormat:@"总报销金额(元)：%ld",self.allMoney];
-        });
-        
-    });
-}
 
 #pragma mark- Getter
 - (UITableView *)tableView{
@@ -323,9 +292,16 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         [[_saveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self)
             //            [self saveExpense];
-            SFFinanSearchResultViewController * hisVC = [SFFinanSearchResultViewController new];
+            SFHistoryIncomeViewController * hisVC = [SFHistoryIncomeViewController new];
             hisVC.title = @"搜索结果";
+            hisVC.params = [self saveExpense];
+            hisVC.bizTypes = _bizTypes;
+            hisVC.showDetailStr = _showDetailStr;
             [self.navigationController pushViewController:hisVC animated:YES];
+            
+//            SFFinanSearchResultViewController * hisVC = [SFFinanSearchResultViewController new];
+//            hisVC.title = @"搜索结果";
+//            [self.navigationController pushViewController:hisVC animated:YES];
         }];
     }
     return _saveButton;
@@ -355,40 +331,69 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     }];
 }
 
-- (void)saveExpense{
+- (NSMutableDictionary *)saveExpense{
     
-    //    NSArray * array = self.dataArray;
-    //    NSArray * array = self.dataArray[indexPath.section];
-    //    SFBillSearchModel * model = array[indexPath.row];
     NSMutableArray * arrays = [NSMutableArray array];
-    NSMutableDictionary * dicts = [NSMutableDictionary dictionary];
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
     for (NSArray * array in self.dataArray) {
-        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
         for (SFBillSearchModel * model in array) {
-            
-            if (model.type == 1) {
-                [dict setValue:model.destitle forKey:@"amount"];
-            }
-            if (model.type == 2) {
-                [dict setValue:model.destitle forKey:@"category"];
-            }
-            if (model.type == 3) {
-                [dict setValue:model.destitle forKey:@"detail"];
-            }
             if (model.type == 5) {
-                
                 for (SFApprpvalModel * appmodel in model.persons) {
                     
-                    if ([appmodel.title isEqualToString:@"审核人："]) {
-                        [dicts setValue:appmodel.value forKey:@"checkerId"];
+                    if ([appmodel.title isEqualToString:@"收入金额："]&&appmodel.detitle.length>0) {
+                        [dict setValue:@(appmodel.detitle.integerValue) forKey:@"amount"];
                     }
-                    if ([appmodel.title isEqualToString:@"审批人："]) {
-                        [dicts setValue:appmodel.value forKey:@"approverId"];
+                    if ([appmodel.title isEqualToString:@"结账方式："]&&appmodel.detitle.length>0) {
+                        [dict setValue:appmodel.detitle forKey:@"payType"];
                     }
-                    if ([appmodel.title isEqualToString:@"出纳人："]) {
-                        [dicts setValue:appmodel.value forKey:@"cashierId"];
+                    if ([appmodel.title isEqualToString:@"单价："]&&appmodel.detitle.length>0) {
+                        [dict setValue:@(appmodel.detitle.integerValue) forKey:@"price"];
+                    }
+                    if ([appmodel.title isEqualToString:@"数量："]&&appmodel.detitle.length>0) {
+                        [dict setValue:@(appmodel.detitle.integerValue) forKey:@"num"];
+                    }
+                    if ([appmodel.title isEqualToString:@"凭证字："]&&appmodel.detitle.length>0) {
+                        [dict setValue:appmodel.detitle forKey:@"voucherWord"];
+                    }
+                    if ([appmodel.title isEqualToString:@"凭证号："]&&appmodel.detitle.length>0) {
+                        [dict setValue:appmodel.detitle forKey:@"voucherNo"];
+                    }
+                    if ([appmodel.title isEqualToString:@"经办人："]&&appmodel.value.length>0) {
+                        [dict setValue:appmodel.value forKey:@"operatorId"];
+                    }
+                    if ([appmodel.title isEqualToString:@"制表人："]&&appmodel.value.length>0) {
+                        [dict setValue:appmodel.value forKey:@"listerId"];
+                    }
+                    if ([appmodel.title isEqualToString:@"审核人："]&&appmodel.value.length>0) {
+                        [dict setValue:appmodel.value forKey:@"auditorId"];
+                    }
+                    if ([appmodel.title isEqualToString:@"审批人："]&&appmodel.value.length>0) {
+                        [dict setValue:appmodel.value forKey:@"approverId"];
                     }
                 }
+            }else{
+                if ([model.title isEqualToString:@"编号："]) {
+                    //                    [dict setValue:model.destitle forKey:@"detail"];
+                }else if ([model.title isEqualToString:@"类别："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"category"];
+                }else if ([model.title isEqualToString:@"业务日期："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"bizDate"];
+                }else if ([model.title isEqualToString:@"来往业务："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"dealing"];
+                }else if ([model.title isEqualToString:@"记账方式："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"chargeType"];
+                }else if ([model.title isEqualToString:@"关键词："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"keyword"];
+                }else if ([model.title isEqualToString:@"客户："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"customer"];
+                }else if ([model.title isEqualToString:@"出纳人："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"cashierId"];
+                }else if ([model.title isEqualToString:@"摘要："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"remark"];
+                }else if ([model.title isEqualToString:@"科目："]&&model.destitle.length>0) {
+                    [dict setValue:model.destitle forKey:@"subject"];
+                }
+                
             }
         }
         
@@ -397,24 +402,13 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         }
     }
     
-    [dicts setObject:arrays forKey:@"reimbursementItemDTOList"];
-    [dicts setObject:self.IdArray forKey:@"copyToIds"];
-    [dicts setObject:self.imageArray forKey:@"photoList"];
-    NSLog(@" ======= %@>>>>",dicts);
+    if (self.bizTypes) {
+        [dict setObject:@[[SFCommon getNULLString:self.bizTypes]] forKey:@"bizTypes"];
+    }else{
+        [dict setObject:[self.title containsString:@"收入"]?@[@"DEBIT"]:@[@"CREDIT"] forKey:@"dcFlags"];
+    }
     
-    [MBProgressHUD showActivityMessageInWindow:@""];
-    [SFExpenseHttpModel postAddExpense:dicts success:^{
-        
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showSuccessMessage:@"添加成功" completionBlock:^{
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-        
-    } failure:^(NSError * _Nonnull error) {
-        
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showWarnMessage:@"添加失败"];
-    }];
+    return dict;
 }
 
 @end

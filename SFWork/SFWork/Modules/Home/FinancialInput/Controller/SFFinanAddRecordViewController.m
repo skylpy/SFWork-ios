@@ -98,7 +98,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 - (void)initData {
     
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareAddItemArray:@"LS"]];
+    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareAddItemArray:self.type]];
     [self.tableView reloadData];
 }
 

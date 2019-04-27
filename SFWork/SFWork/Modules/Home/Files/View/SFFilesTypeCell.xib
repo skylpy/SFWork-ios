@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="53" id="KGk-i7-Jjw" customClass="SFFilesTypeCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_document_excel_green" translatesAutoresizingMaskIntoConstraints="NO" id="bTX-0b-4tx">
+                        <rect key="frame" x="20" y="11" width="27" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="27" id="xk0-60-YFv"/>
+                            <constraint firstAttribute="height" constant="31" id="z56-L1-mC1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="财务部-黄颖劳动合同-12501" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8C-2l-oRj">
+                        <rect key="frame" x="57" y="8" width="200" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="0fj-hg-UAE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-10-26 23:19 686.8 KB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZw-9O-b9w">
+                        <rect key="frame" x="57" y="30" width="200" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="XZ2-A9-TTT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wi2-19-JTm">
+                        <rect key="frame" x="342" y="16.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="KWG-h8-lrt"/>
+                            <constraint firstAttribute="height" constant="20" id="cIp-lZ-Fs7"/>
+                        </constraints>
+                        <state key="normal" image="btn_dot_file_gray"/>
+                        <state key="selected" image="btn_tick_green"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYM-zM-nY7">
+                        <rect key="frame" x="307" y="16.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="5b3-DG-jI1"/>
+                            <constraint firstAttribute="width" constant="20" id="vLm-Xy-bVb"/>
+                        </constraints>
+                        <state key="normal" image="btn_information_gray"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="e8C-2l-oRj" firstAttribute="leading" secondItem="bTX-0b-4tx" secondAttribute="trailing" constant="10" id="8Ip-dm-qQS"/>
+                    <constraint firstItem="bTX-0b-4tx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9an-cB-z2x"/>
+                    <constraint firstItem="VZw-9O-b9w" firstAttribute="leading" secondItem="bTX-0b-4tx" secondAttribute="trailing" constant="10" id="AJQ-ly-uuw"/>
+                    <constraint firstItem="wi2-19-JTm" firstAttribute="leading" secondItem="MYM-zM-nY7" secondAttribute="trailing" constant="15" id="BfV-tn-HH5"/>
+                    <constraint firstItem="bTX-0b-4tx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="E1Z-gz-nan"/>
+                    <constraint firstItem="MYM-zM-nY7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="N0x-cf-acK"/>
+                    <constraint firstItem="VZw-9O-b9w" firstAttribute="bottom" secondItem="bTX-0b-4tx" secondAttribute="bottom" constant="5" id="b9D-Ve-IB2"/>
+                    <constraint firstAttribute="trailing" secondItem="wi2-19-JTm" secondAttribute="trailing" constant="13" id="dOi-rU-JfK"/>
+                    <constraint firstItem="e8C-2l-oRj" firstAttribute="top" secondItem="bTX-0b-4tx" secondAttribute="top" constant="-3" id="mJl-hv-few"/>
+                    <constraint firstItem="wi2-19-JTm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uBa-yV-Wf2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="desLabel" destination="VZw-9O-b9w" id="oAb-6I-3He"/>
+                <outlet property="iconImage" destination="bTX-0b-4tx" id="Y3K-B7-956"/>
+                <outlet property="informationButton" destination="MYM-zM-nY7" id="vaf-vi-YIS"/>
+                <outlet property="nameLabel" destination="e8C-2l-oRj" id="WTk-1K-GtD"/>
+                <outlet property="optionButton" destination="wi2-19-JTm" id="0y0-b8-Ji8"/>
+            </connections>
+            <point key="canvasLocation" x="96.799999999999997" y="124.58770614692655"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_dot_file_gray" width="20" height="20"/>
+        <image name="btn_information_gray" width="20" height="20"/>
+        <image name="btn_tick_green" width="20" height="20"/>
+        <image name="icon_document_excel_green" width="27" height="31"/>
+    </resources>
+</document>

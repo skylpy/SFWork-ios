@@ -1,0 +1,24 @@
+//
+//  SFSaveButtonCell.m
+//  SFWork
+//
+//  Created by Wilbur Galahad on 2019/3/27.
+//  Copyright © 2019年 SkyWork. All rights reserved.
+//
+
+#import "SFSaveButtonCell.h"
+
+@implementation SFSaveButtonCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SFOrgBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="53"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeW-hy-2XB">
+                    <rect key="frame" x="0.0" y="1" width="131.5" height="52"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="添加员工">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMJ-eh-6kQ">
+                    <rect key="frame" x="131.5" y="10" width="1" height="33"/>
+                    <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="Pyn-eR-ftt"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxC-Jl-jml">
+                    <rect key="frame" x="132.5" y="1" width="131" height="51"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="添加子部门">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQe-m7-cdb">
+                    <rect key="frame" x="263.5" y="10" width="1" height="33"/>
+                    <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="hoO-iA-zkO"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-8g-bRf">
+                    <rect key="frame" x="264.5" y="1" width="131.5" height="52"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="部门设置">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-Wc-c3u">
+                    <rect key="frame" x="0.0" y="0.0" width="396" height="1"/>
+                    <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fEN-1G-Hmq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="OeW-hy-2XB" secondAttribute="bottom" id="6Kr-g6-Kjg"/>
+                <constraint firstItem="OeW-hy-2XB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="7Ai-yt-SGe"/>
+                <constraint firstItem="wdP-Wc-c3u" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9tz-yT-03L"/>
+                <constraint firstItem="gxC-Jl-jml" firstAttribute="leading" secondItem="NMJ-eh-6kQ" secondAttribute="trailing" id="Dtl-Pb-HKg"/>
+                <constraint firstItem="NMJ-eh-6kQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="E4K-pA-Ov3"/>
+                <constraint firstAttribute="trailing" secondItem="v1S-8g-bRf" secondAttribute="trailing" id="GpW-GT-8cQ"/>
+                <constraint firstItem="wdP-Wc-c3u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Hbd-Vj-oVk"/>
+                <constraint firstItem="nQe-m7-cdb" firstAttribute="leading" secondItem="gxC-Jl-jml" secondAttribute="trailing" id="JvA-YN-kOW"/>
+                <constraint firstItem="gxC-Jl-jml" firstAttribute="leading" secondItem="NMJ-eh-6kQ" secondAttribute="trailing" id="Meg-eI-rem"/>
+                <constraint firstAttribute="bottom" secondItem="nQe-m7-cdb" secondAttribute="bottom" constant="10" id="Mn5-D0-KDR"/>
+                <constraint firstItem="v1S-8g-bRf" firstAttribute="width" secondItem="OeW-hy-2XB" secondAttribute="width" id="PFS-Wv-lnl"/>
+                <constraint firstItem="NMJ-eh-6kQ" firstAttribute="leading" secondItem="OeW-hy-2XB" secondAttribute="trailing" id="PKa-Ls-Zp1"/>
+                <constraint firstAttribute="bottom" secondItem="NMJ-eh-6kQ" secondAttribute="bottom" constant="10" id="Q2k-qb-tmT"/>
+                <constraint firstAttribute="bottom" secondItem="gxC-Jl-jml" secondAttribute="bottom" constant="1" id="Tv0-CG-6xa"/>
+                <constraint firstItem="OeW-hy-2XB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vcn-4n-mDe"/>
+                <constraint firstItem="v1S-8g-bRf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="VpM-hA-U35"/>
+                <constraint firstAttribute="bottom" secondItem="v1S-8g-bRf" secondAttribute="bottom" id="WrZ-Ox-FVL"/>
+                <constraint firstItem="v1S-8g-bRf" firstAttribute="leading" secondItem="nQe-m7-cdb" secondAttribute="trailing" id="YFM-aF-K72"/>
+                <constraint firstAttribute="trailing" secondItem="wdP-Wc-c3u" secondAttribute="trailing" id="a3Z-Co-Tl4"/>
+                <constraint firstItem="NMJ-eh-6kQ" firstAttribute="leading" secondItem="OeW-hy-2XB" secondAttribute="trailing" id="cde-Am-V0P"/>
+                <constraint firstItem="nQe-m7-cdb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="eGy-Gg-opJ"/>
+                <constraint firstItem="v1S-8g-bRf" firstAttribute="leading" secondItem="nQe-m7-cdb" secondAttribute="trailing" id="jpx-jx-V9e"/>
+                <constraint firstItem="gxC-Jl-jml" firstAttribute="width" secondItem="OeW-hy-2XB" secondAttribute="width" id="tYj-ul-lXb"/>
+                <constraint firstItem="gxC-Jl-jml" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="wL3-vF-TuZ"/>
+                <constraint firstItem="nQe-m7-cdb" firstAttribute="leading" secondItem="gxC-Jl-jml" secondAttribute="trailing" id="xG6-y7-Jaw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addStaffButton" destination="OeW-hy-2XB" id="6d5-Rq-ygJ"/>
+                <outlet property="depButton" destination="gxC-Jl-jml" id="C8m-jj-cHh"/>
+                <outlet property="depSetButton" destination="v1S-8g-bRf" id="SIE-hJ-vbR"/>
+            </connections>
+            <point key="canvasLocation" x="155.19999999999999" y="400.74962518740631"/>
+        </view>
+        <view contentMode="scaleToFill" id="ugT-y2-VsI" customClass="SFOrgBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="61"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRQ-mo-fbX">
+                    <rect key="frame" x="0.0" y="1" width="182" height="60"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="添加员工">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MlJ-Fb-HFN">
+                    <rect key="frame" x="182" y="10" width="1" height="41"/>
+                    <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="hNr-LE-Fec"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AM5-qR-9s3">
+                    <rect key="frame" x="183" y="0.0" width="182" height="61"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="添加子部门">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="AM5-qR-9s3" firstAttribute="leading" secondItem="MlJ-Fb-HFN" secondAttribute="trailing" id="2N6-SS-rKS"/>
+                <constraint firstAttribute="trailing" secondItem="AM5-qR-9s3" secondAttribute="trailing" id="7NV-En-1Xx"/>
+                <constraint firstItem="MlJ-Fb-HFN" firstAttribute="leading" secondItem="uRQ-mo-fbX" secondAttribute="trailing" id="LAx-Vc-vND"/>
+                <constraint firstItem="MlJ-Fb-HFN" firstAttribute="top" secondItem="ugT-y2-VsI" secondAttribute="top" constant="10" id="NrR-WV-cmX"/>
+                <constraint firstItem="uRQ-mo-fbX" firstAttribute="leading" secondItem="ugT-y2-VsI" secondAttribute="leading" id="Nu4-o3-KBv"/>
+                <constraint firstItem="uRQ-mo-fbX" firstAttribute="top" secondItem="ugT-y2-VsI" secondAttribute="top" constant="1" id="Z43-y8-ubH"/>
+                <constraint firstItem="MlJ-Fb-HFN" firstAttribute="leading" secondItem="uRQ-mo-fbX" secondAttribute="trailing" id="cBa-QG-GQM"/>
+                <constraint firstItem="AM5-qR-9s3" firstAttribute="width" secondItem="uRQ-mo-fbX" secondAttribute="width" id="cCj-iS-Ugl"/>
+                <constraint firstAttribute="bottom" secondItem="uRQ-mo-fbX" secondAttribute="bottom" id="cYk-v3-sgN"/>
+                <constraint firstItem="AM5-qR-9s3" firstAttribute="top" secondItem="ugT-y2-VsI" secondAttribute="top" id="dGO-XT-eBN"/>
+                <constraint firstAttribute="bottom" secondItem="MlJ-Fb-HFN" secondAttribute="bottom" constant="10" id="nLe-KX-Q46"/>
+                <constraint firstItem="AM5-qR-9s3" firstAttribute="leading" secondItem="MlJ-Fb-HFN" secondAttribute="trailing" id="pVd-Wv-enf"/>
+                <constraint firstAttribute="bottom" secondItem="AM5-qR-9s3" secondAttribute="bottom" id="tMI-hA-CxT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addStaffButton" destination="uRQ-mo-fbX" id="S1H-sV-Q4w"/>
+                <outlet property="depButton" destination="AM5-qR-9s3" id="Jue-bV-2GR"/>
+            </connections>
+            <point key="canvasLocation" x="156" y="604.94752623688157"/>
+        </view>
+    </objects>
+</document>

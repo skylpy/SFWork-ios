@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SFSearchView">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="47"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaY-DD-kXW">
+                    <rect key="frame" x="10" y="6" width="391" height="35"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_inset_gray" translatesAutoresizingMaskIntoConstraints="NO" id="dJH-Mq-2Ha">
+                            <rect key="frame" x="10" y="10.5" width="14" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="bOI-Cm-HOi"/>
+                                <constraint firstAttribute="width" constant="14" id="slh-yY-3oG"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XcR-Wl-UQH">
+                            <rect key="frame" x="34" y="0.0" width="347" height="35"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="XcR-Wl-UQH" secondAttribute="bottom" id="13L-gR-tHk"/>
+                        <constraint firstItem="dJH-Mq-2Ha" firstAttribute="leading" secondItem="yaY-DD-kXW" secondAttribute="leading" constant="10" id="Ny0-FG-HGB"/>
+                        <constraint firstItem="dJH-Mq-2Ha" firstAttribute="centerY" secondItem="yaY-DD-kXW" secondAttribute="centerY" id="ZrT-ZZ-WaU"/>
+                        <constraint firstAttribute="trailing" secondItem="XcR-Wl-UQH" secondAttribute="trailing" constant="10" id="siH-x5-swm"/>
+                        <constraint firstItem="XcR-Wl-UQH" firstAttribute="leading" secondItem="dJH-Mq-2Ha" secondAttribute="trailing" constant="10" id="taE-Pa-QKh"/>
+                        <constraint firstItem="XcR-Wl-UQH" firstAttribute="top" secondItem="yaY-DD-kXW" secondAttribute="top" id="yRO-5C-d9l"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yaY-DD-kXW" secondAttribute="trailing" constant="10" id="7DD-B8-bB3"/>
+                <constraint firstAttribute="bottom" secondItem="yaY-DD-kXW" secondAttribute="bottom" constant="6" id="FIb-mb-rCa"/>
+                <constraint firstItem="yaY-DD-kXW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="b4w-8Z-lnK"/>
+                <constraint firstItem="yaY-DD-kXW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="mRK-Ja-REF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="searchTextField" destination="XcR-Wl-UQH" id="ZDy-w2-aPj"/>
+                <outlet property="searchView" destination="yaY-DD-kXW" id="rJA-qH-d9E"/>
+            </connections>
+            <point key="canvasLocation" x="92" y="394.45277361319341"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_search_inset_gray" width="14" height="14"/>
+    </resources>
+</document>

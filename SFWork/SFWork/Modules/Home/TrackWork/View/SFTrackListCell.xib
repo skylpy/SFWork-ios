@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="KGk-i7-Jjw" customClass="SFTrackListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLA-hq-aGq">
+                        <rect key="frame" x="15" y="17.5" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="CgX-el-bIt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深圳市南山区高新南一道6号" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZd-8U-QYJ">
+                        <rect key="frame" x="95" y="5" width="210" height="44.5"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uZd-8U-QYJ" firstAttribute="leading" secondItem="DLA-hq-aGq" secondAttribute="trailing" constant="20" id="05W-bD-iKz"/>
+                    <constraint firstItem="DLA-hq-aGq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="4lg-Yg-TXa"/>
+                    <constraint firstAttribute="trailing" secondItem="uZd-8U-QYJ" secondAttribute="trailing" constant="15" id="KeT-Pb-5lY"/>
+                    <constraint firstAttribute="bottom" secondItem="uZd-8U-QYJ" secondAttribute="bottom" constant="5" id="PSd-ux-p6t"/>
+                    <constraint firstItem="DLA-hq-aGq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="drm-3c-0x1"/>
+                    <constraint firstItem="uZd-8U-QYJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="oRb-K0-SaE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="uZd-8U-QYJ" id="hEd-hg-IcI"/>
+                <outlet property="timeLabel" destination="DLA-hq-aGq" id="VIT-Ae-GDa"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="150.67466266866569"/>
+        </tableViewCell>
+    </objects>
+</document>

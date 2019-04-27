@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FromDateSelectDatePick">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rom-jn-0d0">
+                    <rect key="frame" x="0.0" y="659" width="414" height="237"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04J-CD-N7a">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
+                            <subviews>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="取消" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVM-j8-K24">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="38"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="FVa-62-XJX" appends="YES" id="VYF-rD-LqF"/>
+                                    </connections>
+                                </label>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="确定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U8-lf-FHn">
+                                    <rect key="frame" x="350" y="0.0" width="64" height="38"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="highlightedColor"/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="fQH-16-Jyl" appends="YES" id="KmI-n8-5LB"/>
+                                    </connections>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日期区间选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yij-np-7HL">
+                                    <rect key="frame" x="116" y="0.0" width="181" height="38"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="38" id="pQp-k3-bGF"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-12-14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUH-SK-xHe">
+                            <rect key="frame" x="101" y="39" width="86" height="38"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="38" id="5Vk-E7-5ih"/>
+                                <constraint firstAttribute="width" constant="86" id="r1l-DU-gcm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0039215686274509803" green="0.70196078431372544" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="9jT-PI-RyL" appends="YES" id="fSO-Qo-6jT"/>
+                            </connections>
+                        </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-12-14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ9-En-8uF">
+                            <rect key="frame" x="227" y="39" width="86" height="38"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="38" id="Uuv-SA-Y9N"/>
+                                <constraint firstAttribute="width" constant="86" id="gBz-oN-Z2c"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="uQg-dn-itC" appends="YES" id="Kcz-VQ-roB"/>
+                            </connections>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux9-jS-N83">
+                            <rect key="frame" x="196" y="39" width="22" height="38"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="22" id="3ip-hE-Fnj"/>
+                                <constraint firstAttribute="height" constant="38" id="RgG-Xl-lCr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oEa-sa-4Cs">
+                            <rect key="frame" x="0.0" y="72" width="414" height="165"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfj-Kb-u7n">
+                            <rect key="frame" x="101" y="68" width="86" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.0039215686269999999" green="0.70196078429999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="04J-CD-N7a" firstAttribute="top" secondItem="rom-jn-0d0" secondAttribute="top" id="3BJ-6B-mTy"/>
+                        <constraint firstAttribute="height" constant="237" id="G1R-0H-ULv"/>
+                        <constraint firstItem="Ux9-jS-N83" firstAttribute="leading" secondItem="YUH-SK-xHe" secondAttribute="trailing" constant="9" id="HS2-Qy-6Ew"/>
+                        <constraint firstItem="Ux9-jS-N83" firstAttribute="top" secondItem="rom-jn-0d0" secondAttribute="top" constant="39" id="SlR-8x-vHo"/>
+                        <constraint firstItem="04J-CD-N7a" firstAttribute="leading" secondItem="rom-jn-0d0" secondAttribute="leading" id="aS1-DI-1Fo"/>
+                        <constraint firstItem="fJ9-En-8uF" firstAttribute="leading" secondItem="Ux9-jS-N83" secondAttribute="trailing" constant="9" id="dkH-GQ-nbG"/>
+                        <constraint firstItem="fJ9-En-8uF" firstAttribute="top" secondItem="rom-jn-0d0" secondAttribute="top" constant="39" id="ful-aM-5Pp"/>
+                        <constraint firstAttribute="trailing" secondItem="04J-CD-N7a" secondAttribute="trailing" id="l5S-O8-b7o"/>
+                        <constraint firstItem="Ux9-jS-N83" firstAttribute="centerX" secondItem="rom-jn-0d0" secondAttribute="centerX" id="oKI-kc-y0w"/>
+                        <constraint firstItem="YUH-SK-xHe" firstAttribute="top" secondItem="rom-jn-0d0" secondAttribute="top" constant="39" id="omW-0W-cfS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.56352244127516782" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="rom-jn-0d0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9v2-jK-Nmx"/>
+                <constraint firstAttribute="bottom" secondItem="rom-jn-0d0" secondAttribute="bottom" id="Kiy-Yy-eA6"/>
+                <constraint firstItem="rom-jn-0d0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="n5n-2B-eIm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bottomLine" destination="sfj-Kb-u7n" id="wek-R2-7ib"/>
+                <outlet property="datePickBackView" destination="oEa-sa-4Cs" id="XrC-Y7-Yr2"/>
+                <outlet property="endDateLB" destination="fJ9-En-8uF" id="Hnw-fY-L7D"/>
+                <outlet property="startDateLB" destination="YUH-SK-xHe" id="IFH-dR-EgK"/>
+                <outlet property="titleLB" destination="yij-np-7HL" id="hPg-ff-Vbn"/>
+            </connections>
+            <point key="canvasLocation" x="-642" y="51"/>
+        </view>
+        <tapGestureRecognizer id="fQH-16-Jyl">
+            <connections>
+                <action selector="sureBtnAction:" destination="iN0-l3-epB" id="ufL-xD-5LQ"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="FVa-62-XJX">
+            <connections>
+                <action selector="cancelBtnAction:" destination="iN0-l3-epB" id="UjE-Xx-zjv"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="uQg-dn-itC">
+            <connections>
+                <action selector="entimeTapAction:" destination="iN0-l3-epB" id="E1t-K2-LlD"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="9jT-PI-RyL">
+            <connections>
+                <action selector="startTimeTapAction:" destination="iN0-l3-epB" id="jbI-Ie-JKX"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

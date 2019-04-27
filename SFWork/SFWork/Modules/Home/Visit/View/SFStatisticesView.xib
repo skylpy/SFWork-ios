@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SFStatisticesView">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="46"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1v-L4-CIq">
+                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="44"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
+                    <state key="normal" title="部门">
+                        <color key="titleColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" title="部门">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgH-NQ-g7U">
+                    <rect key="frame" x="165.5" y="0.0" width="165.5" height="44"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
+                    <state key="normal" title="员工">
+                        <color key="titleColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" title="员工">
+                        <color key="titleColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ld0-ps-dEy">
+                    <rect key="frame" x="0.0" y="44" width="165.5" height="2"/>
+                    <color key="backgroundColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="Gi0-HP-2fI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FgH-NQ-g7U" firstAttribute="width" secondItem="H1v-L4-CIq" secondAttribute="width" id="8dP-lT-YcD"/>
+                <constraint firstAttribute="bottom" secondItem="FgH-NQ-g7U" secondAttribute="bottom" constant="2" id="CTC-nF-qLV"/>
+                <constraint firstItem="ld0-ps-dEy" firstAttribute="width" secondItem="H1v-L4-CIq" secondAttribute="width" id="E28-lP-thZ"/>
+                <constraint firstItem="FgH-NQ-g7U" firstAttribute="leading" secondItem="H1v-L4-CIq" secondAttribute="trailing" id="FTA-B4-xSt"/>
+                <constraint firstAttribute="bottom" secondItem="ld0-ps-dEy" secondAttribute="bottom" id="Jwl-eu-LqR"/>
+                <constraint firstItem="H1v-L4-CIq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Te6-rA-6Rz"/>
+                <constraint firstItem="FgH-NQ-g7U" firstAttribute="leading" secondItem="H1v-L4-CIq" secondAttribute="trailing" id="VbT-po-xWy"/>
+                <constraint firstItem="FgH-NQ-g7U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aR8-WB-y3A"/>
+                <constraint firstAttribute="bottom" secondItem="H1v-L4-CIq" secondAttribute="bottom" constant="2" id="buQ-gR-VMX"/>
+                <constraint firstItem="ld0-ps-dEy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cto-aS-Vd6"/>
+                <constraint firstAttribute="trailing" secondItem="FgH-NQ-g7U" secondAttribute="trailing" id="e5f-Hk-m4a"/>
+                <constraint firstItem="H1v-L4-CIq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nU1-gj-HPn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="departButton" destination="H1v-L4-CIq" id="tLH-DN-duo"/>
+                <outlet property="employessButton" destination="FgH-NQ-g7U" id="cHu-Ne-veG"/>
+                <outlet property="viewLayoutX" destination="cto-aS-Vd6" id="yMc-PD-mBR"/>
+            </connections>
+            <point key="canvasLocation" x="103.2" y="399.40029985007499"/>
+        </view>
+    </objects>
+</document>

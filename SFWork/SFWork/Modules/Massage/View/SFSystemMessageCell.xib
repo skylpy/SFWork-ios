@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="KGk-i7-Jjw" customClass="SFSystemMessageCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="考勤通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEo-Il-wXf">
+                        <rect key="frame" x="20" y="11" width="65.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="亲，上班时间快到了，请尽快去我的考勤里打" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcI-K1-vqm">
+                        <rect key="frame" x="20" y="38" width="339" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Am2-4y-FLw">
+                        <rect key="frame" x="90.5" y="17.5" width="7" height="7"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.29803921568627451" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="7" id="3Ot-3k-Xq9"/>
+                            <constraint firstAttribute="height" constant="7" id="JRa-5I-hGf"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBd-uR-dmf">
+                        <rect key="frame" x="257" y="13" width="103" height="15"/>
+                        <string key="text">2019-01-26 16:40
+</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cEo-Il-wXf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="1FS-xV-FPC"/>
+                    <constraint firstAttribute="trailing" secondItem="ZcI-K1-vqm" secondAttribute="trailing" constant="16" id="1ww-Jp-no4"/>
+                    <constraint firstItem="cEo-Il-wXf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="27c-Sa-nIe"/>
+                    <constraint firstItem="Am2-4y-FLw" firstAttribute="centerY" secondItem="cEo-Il-wXf" secondAttribute="centerY" id="3ll-Oe-sGh"/>
+                    <constraint firstItem="ZcI-K1-vqm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="URP-7p-AbO"/>
+                    <constraint firstItem="Am2-4y-FLw" firstAttribute="leading" secondItem="cEo-Il-wXf" secondAttribute="trailing" constant="5" id="Y9T-fg-BZx"/>
+                    <constraint firstItem="dBd-uR-dmf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="lwQ-Ms-nCD"/>
+                    <constraint firstAttribute="trailing" secondItem="dBd-uR-dmf" secondAttribute="trailing" constant="15" id="moS-Ms-zMx"/>
+                    <constraint firstItem="ZcI-K1-vqm" firstAttribute="top" secondItem="cEo-Il-wXf" secondAttribute="bottom" constant="7" id="xzf-Bj-fbg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLB" destination="ZcI-K1-vqm" id="89c-ck-p9t"/>
+                <outlet property="redRoundView" destination="Am2-4y-FLw" id="1Hb-0A-Yx2"/>
+                <outlet property="timeLB" destination="dBd-uR-dmf" id="mPg-vE-oe6"/>
+                <outlet property="titleLB" destination="cEo-Il-wXf" id="e5L-vT-Zpg"/>
+            </connections>
+            <point key="canvasLocation" x="-282" y="-27"/>
+        </tableViewCell>
+    </objects>
+</document>

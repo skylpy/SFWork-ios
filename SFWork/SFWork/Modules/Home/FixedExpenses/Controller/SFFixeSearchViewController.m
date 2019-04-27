@@ -10,6 +10,9 @@
 #import "SFHistoryIncomeViewController.h"
 #import "SFSuperSuborViewController.h"
 #import "SFAddExpenseViewController.h"
+#import "SFAllManagerViewController.h"
+#import "SFSelCustomerViewController.h"
+#import "SFFinancialApprovalModel.h"
 #import "SFExpenseHttpModel.h"
 #import "SFPhotoSelectCell.h"
 #import "SFTextViewCell.h"
@@ -22,7 +25,7 @@ static NSString * const SFPhotoSelectCellID = @"SFPhotoSelectCellID";
 static NSString * const SFTextViewCellID = @"SFTextViewCellID";
 static NSString * const SFSelectPersonCellID = @"SFSelectPersonCellID";
 static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
-@interface SFFixeSearchViewController ()<UITableViewDelegate,UITableViewDataSource,SFExpenseCellDelegate,SFSuperSuborViewControllerDelagete,SFPhotoSelectCellDelegate,PickerToolDelegate,SFSelectPersonCellDelegate>
+@interface SFFixeSearchViewController ()<UITableViewDelegate,UITableViewDataSource,SFExpenseCellDelegate,SFSuperSuborViewControllerDelagete,SFPhotoSelectCellDelegate,PickerToolDelegate,SFSelectPersonCellDelegate,SFAllManagerViewControllerDelagete>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *imageArray;
@@ -34,7 +37,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 @property (nonatomic, strong) SFApprpvalModel *appModel;
 @property (nonatomic, strong) NSMutableArray *IdArray;
 @property (nonatomic, strong) NSMutableArray *IconArray;
-
+@property (nonatomic, strong) SFBillSearchModel * model;
 @property (nonatomic, assign) BOOL isBack;
 
 
@@ -91,9 +94,16 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 
 - (void)initData {
     
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareShowItemArray:nil]];
-    [self.tableView reloadData];
+    if (self.isAdd) {
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:[SFBillSearchModel shareAddItemArray:self.type]];
+        
+    }else{
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:[SFBillSearchModel shareShowItemArray:nil]];
+        
+    }
+   [self.tableView reloadData];
 }
 
 - (void)setDrawUI {
@@ -117,7 +127,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         make.top.mas_equalTo(35);
     }];
     
-    [self.view addSubview:self.saveButton];
+    
     [self topView];
 
 }
@@ -126,21 +136,25 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     
     NSArray * array = self.dataArray[indexPath.section];
     SFBillSearchModel * model = array[indexPath.row];
-    if (model.type == 3) {
-        
-        return 203;
-    }
-    if (model.type == 4 || model.type == 6) {
+    if (model.type == 2) {
         
         return 120;
     }
     
-    if (model.type == 5) {
-        if (indexPath.section == 1) {
-            return 120;
-        }
-        return 80;
+    if (model.type == 4) {
+        
+        return 90;
     }
+    if (model.type == 3) {
+        
+        return 120;
+    }
+    if (model.type == 6 || model.type == 7) {
+        
+        return 180;
+    }
+    
+    
     return 45;
 }
 
@@ -169,22 +183,26 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     
     NSArray * array = self.dataArray[indexPath.section];
     SFBillSearchModel * model = array[indexPath.row];
-    if (model.type == 3) {
+    if (model.type == 6||model.type == 7) {
         SFTextViewCell * cell = [tableView dequeueReusableCellWithIdentifier:SFTextViewCellID forIndexPath:indexPath];
         cell.searchModel = model;
         return cell;
     }
     
-    if (model.type == 4) {
+    if (model.type == 3) {
         SFPhotoSelectCell * cell = [tableView dequeueReusableCellWithIdentifier:SFPhotoSelectCellID forIndexPath:indexPath];
         [cell cellImage:nil withIsEdit:NO withCmodel:nil withArr:self.imageArray];
         cell.delegate = self;
         return cell;
     }
     
-    if (model.type == 5) {
+    if (model.type == 2 || model.type == 4) {
         SFExpenseCell * cell = [tableView dequeueReusableCellWithIdentifier:SFExpenseCellID forIndexPath:indexPath];
         cell.model = model;
+        if (model.type == 4) {
+            cell.delegate  = self;
+        }
+        
         return cell;
     }
     
@@ -195,10 +213,64 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     [cell setInputChacneClick:^(NSString * _Nonnull value) {
         @strongify(self)
         
-        [self calculatedAmount];
+        
     }];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray * array = self.dataArray[indexPath.section];
+    SFBillSearchModel * model = array[indexPath.row];
+    self.model = model;
+    if (model.type == 5) {
+        SFAllManagerViewController * vc = [SFAllManagerViewController new];
+        vc.delagete = self;
+        vc.type = singlemType;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (model.type == 13) {
+        SFSelCustomerViewController * vc = [NSClassFromString(@"SFSelCustomerViewController") new];
+        @weakify(self)
+        [vc setSelCustomerClick:^(SFClientModel * _Nonnull cmodel) {
+            @strongify(self)
+            self.model.destitle = cmodel.name;
+            self.model.value = cmodel._id;
+            [self.tableView reloadData];
+        }];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (model.type == 9) {
+        
+        [self selectTime:DatePickerViewDateMode];
+    }
+    
+}
+
+
+- (void)selectTime:(DatePickerViewMode)type{
+    
+    DateTimePickerView *pickerView = [[DateTimePickerView alloc] init];
+    
+    pickerView.delegate = self;
+    pickerView.pickerViewMode = type;
+    [LSKeyWindow addSubview:pickerView];
+    [pickerView showDateTimePickerView];
+}
+#pragma mark - delegate
+
+- (void)didClickFinishDateTimePickerView:(NSString *)date{
+    NSLog(@"%@",date);
+    self.model.destitle = date;
+    
+    [self.tableView reloadData];
+    
+}
+
 
 //添加回调
 - (void)cellClickUpload:(NSArray *)imageArr{
@@ -251,10 +323,9 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 - (void)cellSelectModel:(SFApprpvalModel *)model{
     self.appModel = model;
     if ([model.value isEqualToString:[SFInstance shareInstance].userInfo._id]) return;
-    SFSuperSuborViewController * vc = [NSClassFromString(@"SFSuperSuborViewController") new];
+    SFAllManagerViewController * vc = [SFAllManagerViewController new];
     vc.delagete = self;
-    vc.type = singleType;
-    vc.isSubor = NO;
+    vc.type = singlemType;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -265,6 +336,22 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     self.appModel.value = employee._id;
     [self.tableView reloadData];
 }
+
+//单选
+- (void)singleSelectAllManager:(SFEmployeesModel *)employee{
+    
+    if (self.model.type == 5) {
+        self.model.destitle = employee.name;
+        self.model.value = employee._id;
+    }else{
+        
+        self.appModel.detitle = employee.name;
+        self.appModel.value = employee._id;
+    }
+    
+    [self.tableView reloadData];
+}
+
 
 - (void)calculatedAmount {
     
@@ -339,63 +426,111 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 
 - (void)saveExpense{
     
-    //    NSArray * array = self.dataArray;
-    //    NSArray * array = self.dataArray[indexPath.section];
-    //    SFBillSearchModel * model = array[indexPath.row];
     NSMutableArray * arrays = [NSMutableArray array];
-    NSMutableDictionary * dicts = [NSMutableDictionary dictionary];
+    NSMutableDictionary * dicts = [SFFinancialApprovalModel pramApprovalJson:self.dataArray];
     for (NSArray * array in self.dataArray) {
-        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        
         for (SFBillSearchModel * model in array) {
             
-            if (model.type == 1) {
-                [dict setValue:model.destitle forKey:@"amount"];
-            }
             if (model.type == 2) {
-                [dict setValue:model.destitle forKey:@"category"];
-            }
-            if (model.type == 3) {
-                [dict setValue:model.destitle forKey:@"detail"];
-            }
-            if (model.type == 5) {
-                
-                for (SFApprpvalModel * appmodel in model.persons) {
+                for (int i = 0; i < model.persons.count; i ++) {
                     
-                    if ([appmodel.title isEqualToString:@"审核人："]) {
-                        [dicts setValue:appmodel.value forKey:@"checkerId"];
+                    SFSearchApprpvalModel * mod = model.persons[i];
+                    if ([mod.title isEqualToString:@"收入金额："]) {
+                        
+                        [dicts setValue:mod.detitle forKey:@"amount"];
                     }
-                    if ([appmodel.title isEqualToString:@"审批人："]) {
-                        [dicts setValue:appmodel.value forKey:@"approverId"];
+                    if ([mod.title isEqualToString:@"结账方式："]) {
+                        [dicts setValue:mod.detitle forKey:@"payType"];
                     }
-                    if ([appmodel.title isEqualToString:@"出纳人："]) {
-                        [dicts setValue:appmodel.value forKey:@"cashierId"];
+                    if ([mod.title isEqualToString:@"单价："]) {
+                        [dicts setValue:mod.detitle forKey:@"price"];
+                    }
+                    if ([mod.title isEqualToString:@"数量："]) {
+                        [dicts setValue:mod.detitle forKey:@"num"];
+                    }
+                    if ([mod.title isEqualToString:@"凭证字："]) {
+                        [dicts setValue:mod.detitle forKey:@"voucherWord"];
+                    }
+                    if ([mod.title isEqualToString:@"凭证号："]) {
+                        [dicts setValue:mod.detitle forKey:@"voucherNo"];
                     }
                 }
             }
-        }
-        
-        if (dict.count) {
-            [arrays addObject:dict];
+            
+            if (model.type == 4 || model.type == 5) {
+                
+                NSMutableDictionary * dict1 = [NSMutableDictionary dictionary];
+                for (int i = 0; i < model.persons.count; i ++) {
+                    NSMutableDictionary * dict11 = [NSMutableDictionary dictionary];
+                    SFSearchApprpvalModel * mod = model.persons[i];
+                    if ([mod.title isEqualToString:@"制表人："]) {
+                        [dict11 setValue:@"LISTER" forKey:@"processStage"];
+                        
+                    }
+                    if ([mod.title isEqualToString:@"经办人："]) {
+                        [dict11 setValue:@"OPERATOR" forKey:@"processStage"];
+                        
+                    }
+                    if ([mod.title isEqualToString:@"审核人："]) {
+                        [dict11 setValue:@"AUDITOR" forKey:@"processStage"];
+                        
+                    }
+                    if ([mod.title isEqualToString:@"审批人："]) {
+                        [dict11 setValue:@"APPROVER" forKey:@"processStage"];
+                        
+                    }
+                    [dict11 setValue:mod.value forKey:@"processorId"];
+                    NSLog(@"%@",dict11);
+                    [arrays addObject:dict11];
+                }
+                
+                
+                if (model.type == 5) {
+                    NSMutableDictionary * dict11 = [NSMutableDictionary dictionary];
+                    [dict11 setValue:@"CASHIER" forKey:@"processStage"];
+                    [dict11 setValue:model.value forKey:@"processorId"];
+                    
+                    [arrays addObject:dict11];
+                }
+                
+            }
         }
     }
-    
-    [dicts setObject:arrays forKey:@"reimbursementItemDTOList"];
-    [dicts setObject:self.IdArray forKey:@"copyToIds"];
-    [dicts setObject:self.imageArray forKey:@"photoList"];
+    [dicts setObject:arrays forKey:@"billProcessDTOList"];
+    for (NSDictionary *dic in arrays) {
+        
+        if ([dic[@"processStage"] isEqualToString:@"LISTER"]) {
+            [dicts setValue:dic[@"processorId"] forKey:@"listerId"];
+        }
+        if ([dic[@"processStage"] isEqualToString:@"OPERATOR"]) {
+            [dicts setValue:dic[@"processorId"] forKey:@"operatorId"];
+        }
+        if ([dic[@"processStage"] isEqualToString:@"APPROVER"]) {
+            [dicts setValue:dic[@"processorId"] forKey:@"approverId"];
+        }
+        if ([dic[@"processStage"] isEqualToString:@"AUDITOR"]) {
+            [dicts setValue:dic[@"processorId"] forKey:@"auditorId"];
+        }
+        if ([dic[@"processStage"] isEqualToString:@"CASHIER"]) {
+            [dicts setValue:dic[@"processorId"] forKey:@"cashierId"];
+        }
+    }
+    [dicts setObject:self.imageArray forKey:@"photos"];
     NSLog(@" ======= %@>>>>",dicts);
     
-    [MBProgressHUD showActivityMessageInWindow:@""];
-    [SFExpenseHttpModel postAddExpense:dicts success:^{
+    
+    [MBProgressHUD showActivityMessageInView:@""];
+    [SFFinancialApprovalHttpModel addfinacebillProcess:dicts success:^{
         
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showSuccessMessage:@"添加成功" completionBlock:^{
+        [MBProgressHUD showInfoMessage:@"添加成功" completionBlock:^{
+            !self.fixeClick?:self.fixeClick();
             [self.navigationController popViewControllerAnimated:YES];
         }];
-        
     } failure:^(NSError * _Nonnull error) {
-        
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showWarnMessage:@"添加失败"];
+        [MBProgressHUD showTipMessageInView:@"添加失败"];
     }];
 }
 
@@ -410,11 +545,8 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         @weakify(self)
         [[_saveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self)
-            
-//            SFHistoryIncomeViewController * hisVC = [SFHistoryIncomeViewController new];
-//            hisVC.title = @"搜索结果";
-//            hisVC.params = [self saveExpense];
-//            [self.navigationController pushViewController:hisVC animated:YES];
+             [self saveExpense];
+
         }];
     }
     return _saveButton;

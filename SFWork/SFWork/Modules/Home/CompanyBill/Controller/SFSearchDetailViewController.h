@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString * bizTypes;
 @property (strong, nonatomic) NSString * showDetailStr;
 @property (strong, nonatomic) NSString * urlStr;
+@property (nonatomic, copy) NSString *type;
 @end
 
 NS_ASSUME_NONNULL_END

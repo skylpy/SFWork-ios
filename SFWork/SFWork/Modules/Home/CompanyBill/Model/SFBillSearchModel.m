@@ -27,7 +27,7 @@
 }
 
 + (NSArray *)shareShowItemArray:(SFFinancialModel *)model{
-    NSArray * array1 = @[[SFBillSearchModel manageTitle:@"编号：" withDestitle:model.bizNo withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:YES withType:1 withValue:@"" withPersons:@[]]];
+    NSArray * array1 = @[[SFBillSearchModel manageTitle:@"编号：" withDestitle:model.bizNo withPlaceholder:@"" withStars:@"" withDescolor:@"" withClick:YES withType:1 withValue:@"" withPersons:@[]]];
     SFBillSearchModel * model1 = [SFBillSearchModel manageTitle:@"" withDestitle:@"" withPlaceholder:@"" withStars:@"" withDescolor:@"" withClick:YES withType:5 withValue:@"" withPersons:[SFSearchApprpvalModel apprpvalSixModel:model]];
     NSArray * array2 = @[model1];
     NSArray * array3 = [SFBillSearchModel shareAddSixCostModel:model];
@@ -66,8 +66,8 @@
     return @[array1,array2,array3,array44,array4,array5,array6];
 }
 
-+ (NSArray *)shareAddItemArray{
-    NSArray * array1 = @[[SFBillSearchModel manageTitle:@"编号：" withDestitle:@"LS" withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:NO withType:1 withValue:@"" withPersons:@[]]];
++ (NSArray *)shareAddItemArray:(NSString *)type {
+    NSArray * array1 = @[[SFBillSearchModel manageTitle:@"编号：" withDestitle:type withPlaceholder:@"请输入" withStars:@"" withDescolor:@"" withClick:NO withType:1 withValue:@"" withPersons:@[]]];
     SFBillSearchModel * model1 = [SFBillSearchModel manageTitle:@"" withDestitle:@"" withPlaceholder:@"" withStars:@"" withDescolor:@"" withClick:YES withType:2 withValue:@"" withPersons:[SFSearchApprpvalModel addFinaSixModel]];
     NSArray * array2 = @[model1];
     NSArray * array3 = [SFBillSearchModel shareAddFinanSixCostModel];
@@ -158,30 +158,30 @@
 }
 
 + (NSArray *)apprpvalShowModel:(SFBillInfoModel *)model{
-    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"经办人：" withDetitle:model.operatorName withValue:model.operatorId withPlaceholder:@"请选择" withClick:NO];
-    SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"制表人：" withDetitle:model.listerName withValue:@"" withPlaceholder:@"请选择" withClick:NO];
-    SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"审核人：" withDetitle:model.auditorName withValue:@"" withPlaceholder:@"请选择" withClick:NO];
-    SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"审批人：" withDetitle:model.approverName withValue:@"" withPlaceholder:@"请选择" withClick:NO];
+    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"经办人：" withDetitle:model.operatorName withValue:model.operatorId withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"制表人：" withDetitle:model.listerName withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"审核人：" withDetitle:model.auditorName withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"审批人：" withDetitle:model.approverName withValue:@"" withPlaceholder:@"" withClick:NO];
     return @[model1,model2,model3,model4];
 }
 
 + (NSArray *)apprpvalSixModel:(SFFinancialModel *)model {
-    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"收入金额：" withDetitle:model.amount withValue:[SFInstance shareInstance].userInfo._id withPlaceholder:@"请输入" withClick:YES];
-    SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"结账方式：" withDetitle:model.chargeType withValue:@"" withPlaceholder:@"请输入" withClick:YES];
-    SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"单价：" withDetitle:model.price withValue:@"" withPlaceholder:@"请输入" withClick:YES];
-    SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"数量：" withDetitle:model.num withValue:@"" withPlaceholder:@"请输入" withClick:YES];
-    SFSearchApprpvalModel * model5 = [SFSearchApprpvalModel manageTitle:@"凭证字：" withDetitle:model.voucherWord withValue:@"" withPlaceholder:@"请输入" withClick:YES];
-    SFSearchApprpvalModel * model6 = [SFSearchApprpvalModel manageTitle:@"凭证号：" withDetitle:model.voucherNo withValue:@"" withPlaceholder:@"请输入" withClick:YES];
+    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"收入金额：" withDetitle:model.amount withValue:[SFInstance shareInstance].userInfo._id withPlaceholder:@"" withClick:YES];
+    SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"结账方式：" withDetitle:model.chargeType withValue:@"" withPlaceholder:@"" withClick:YES];
+    SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"单价：" withDetitle:model.price withValue:@"" withPlaceholder:@"" withClick:YES];
+    SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"数量：" withDetitle:model.num withValue:@"" withPlaceholder:@"" withClick:YES];
+    SFSearchApprpvalModel * model5 = [SFSearchApprpvalModel manageTitle:@"凭证字：" withDetitle:model.voucherWord withValue:@"" withPlaceholder:@"" withClick:YES];
+    SFSearchApprpvalModel * model6 = [SFSearchApprpvalModel manageTitle:@"凭证号：" withDetitle:model.voucherNo withValue:@"" withPlaceholder:@"" withClick:YES];
     return @[model1,model2,model3,model4,model5,model6];
 }
 
 + (NSArray *)apprpvalSixShowModel:(SFBillInfoModel *)model{
-    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"收入金额：" withDetitle:model.amount withValue:@"" withPlaceholder:@"请输入" withClick:NO];
-    SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"结账方式：" withDetitle:model.chargeType withValue:@"" withPlaceholder:@"请输入" withClick:NO];
-    SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"单价：" withDetitle:model.price withValue:@"" withPlaceholder:@"请输入" withClick:NO];
-    SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"数量：" withDetitle:model.num withValue:@"" withPlaceholder:@"请输入" withClick:NO];
-    SFSearchApprpvalModel * model5 = [SFSearchApprpvalModel manageTitle:@"凭证字：" withDetitle:model.voucherWord withValue:@"" withPlaceholder:@"请输入" withClick:NO];
-    SFSearchApprpvalModel * model6 = [SFSearchApprpvalModel manageTitle:@"凭证号：" withDetitle:model.voucherNo withValue:@"" withPlaceholder:@"请输入" withClick:NO];
+    SFSearchApprpvalModel * model1 = [SFSearchApprpvalModel manageTitle:@"收入金额：" withDetitle:model.amount withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model2 = [SFSearchApprpvalModel manageTitle:@"结账方式：" withDetitle:model.chargeType withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model3 = [SFSearchApprpvalModel manageTitle:@"单价：" withDetitle:model.price withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model4 = [SFSearchApprpvalModel manageTitle:@"数量：" withDetitle:model.num withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model5 = [SFSearchApprpvalModel manageTitle:@"凭证字：" withDetitle:model.voucherWord withValue:@"" withPlaceholder:@"" withClick:NO];
+    SFSearchApprpvalModel * model6 = [SFSearchApprpvalModel manageTitle:@"凭证号：" withDetitle:model.voucherNo withValue:@"" withPlaceholder:@"" withClick:NO];
     return @[model1,model2,model3,model4,model5,model6];
 }
 

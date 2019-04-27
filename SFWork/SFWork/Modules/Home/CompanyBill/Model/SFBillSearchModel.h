@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)shareSearchItemArray;
 + (NSArray *)shareShowItemArray:(SFFinancialModel *)model;
 + (NSArray *)shareShowItemArrayWithModel:(SFBillInfoModel *)model;
-+ (NSArray *)shareAddItemArray;
++ (NSArray *)shareAddItemArray:(NSString *)type;
 + (NSArray *)shareAddSixCostModel:(SFFinancialModel *)model;
 + (NSArray *)shareAddSixCostModelWithModel:(SFBillInfoModel *)model;
 + (NSArray *)shareAddFinanSixCostModel;

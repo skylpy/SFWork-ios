@@ -89,14 +89,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 
 - (BOOL)navigationShouldPopOnBackButton{
     
-//    [UIAlertController alertTitle:@"确定离开" mesasge:@"数据未提交哦，离开后数据会丢失" preferredStyle:UIAlertControllerStyleAlert confirmHandler:^(UIAlertAction *alertAction) {
-//        self.isBack = YES;
-//        [self.navigationController popViewControllerAnimated:YES];
-//    } cancleHandler:^(UIAlertAction *cancelAction) {
-//
-//    } viewController:self];
-    
-//    return self.isBack;
+
     
     return YES;
 }
@@ -105,7 +98,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 - (void)initData {
     
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareAddItemArray]];
+    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareAddItemArray:@"LS"]];
     [self.tableView reloadData];
 }
 

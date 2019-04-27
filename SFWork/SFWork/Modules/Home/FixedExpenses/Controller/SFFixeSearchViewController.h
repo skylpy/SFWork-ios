@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SFFixeSearchViewController : UIViewController
 //是不是添加页面
 @property (nonatomic) BOOL isAdd;
+@property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, copy) void (^fixeClick)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

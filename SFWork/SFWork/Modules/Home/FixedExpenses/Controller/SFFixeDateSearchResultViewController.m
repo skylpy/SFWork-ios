@@ -132,6 +132,7 @@
     SFIncomeHeadView * headView = [[[NSBundle mainBundle]loadNibNamed:@"SFIncomeHeadView" owner:nil options:nil]firstObject];
     headView.outBtn.hidden = NO;
     SFBillHomeModel * model = self.dataArray[section];
+    headView.timeLB.text = model.groupDateStr;
     headView.outBlock = ^{
         NSDate * date = [SFCommon stringToDate:model.groupDate];
         NSInteger currDays = [SFCommon getDateMonthDay:date];

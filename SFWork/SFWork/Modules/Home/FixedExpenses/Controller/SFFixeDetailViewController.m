@@ -397,6 +397,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
         
         [MBProgressHUD hideHUD];
         [MBProgressHUD showSuccessMessage:@"添加成功" completionBlock:^{
+            
             [self.navigationController popViewControllerAnimated:YES];
         }];
         

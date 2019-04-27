@@ -149,6 +149,15 @@
         searDetailVC.title = [NSString stringWithFormat:@"%@详细搜索",self.title];
         searDetailVC.bizTypes = [self getBizTypes];
         searDetailVC.showDetailStr = [self getDetailTitle];
+        if ([self.title isEqualToString:@"固定支出"]) {
+            searDetailVC.type = @"GZ";
+        }
+        if ([self.title isEqualToString:@"应收账款"]) {
+            searDetailVC.type = @"YS";
+        }
+        if ([self.title isEqualToString:@"应付账款"]) {
+            searDetailVC.type = @"YF";
+        }
         [self.navigationController pushViewController:searDetailVC animated:YES];
     }else{
         FromDateSelectDatePick * datePickView = [[[NSBundle mainBundle]loadNibNamed:@"FromDateSelectDatePick" owner:nil options:nil] firstObject];
@@ -167,14 +176,27 @@
         };
         [[UIApplication sharedApplication].keyWindow addSubview:datePickView];
     }
-
-
 }
 
 - (void)createNewMessage{
     SFFixeSearchViewController * fixSearchVC = [SFFixeSearchViewController new];
     fixSearchVC.title = [NSString stringWithFormat:@"新增%@",self.title];
     fixSearchVC.isAdd = YES;
+    if ([self.title isEqualToString:@"固定支出"]) {
+        fixSearchVC.type = @"GZ";
+    }
+    if ([self.title isEqualToString:@"应收账款"]) {
+        fixSearchVC.type = @"YS";
+    }
+    if ([self.title isEqualToString:@"应付账款"]) {
+        fixSearchVC.type = @"YF";
+    }
+    @weakify(self)
+    [fixSearchVC setFixeClick:^{
+        @strongify(self)
+        
+        [self.tableView.mj_header beginRefreshing];
+    }];
     [self.navigationController pushViewController:fixSearchVC animated:YES];
 }
 

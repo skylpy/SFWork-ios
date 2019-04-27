@@ -99,7 +99,7 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
 - (void)initData {
     
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareSearchItemArray]];
+    [self.dataArray addObjectsFromArray:[SFBillSearchModel shareAddItemArray:self.type]];
     [self.tableView reloadData];
 }
 
@@ -129,22 +129,27 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     
     NSArray * array = self.dataArray[indexPath.section];
     SFBillSearchModel * model = array[indexPath.row];
-    if (model.type == 3) {
-        
-        return 203;
-    }
-    if (model.type == 4 || model.type == 6) {
+    if (model.type == 2) {
         
         return 120;
     }
     
-    if (model.type == 5) {
-        if (indexPath.section == 1) {
-            return 120;
-        }
-        return 80;
+    if (model.type == 4) {
+        
+        return 90;
     }
+    if (model.type == 3) {
+        
+        return 120;
+    }
+    if (model.type == 6 || model.type == 7) {
+        
+        return 180;
+    }
+    
+    
     return 45;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -172,35 +177,37 @@ static NSString * const SFExpenseTitleCellID = @"SFExpenseTitleCellID";
     
     NSArray * array = self.dataArray[indexPath.section];
     SFBillSearchModel * model = array[indexPath.row];
-    if (model.type == 3) {
+    if (model.type == 6||model.type == 7) {
         SFTextViewCell * cell = [tableView dequeueReusableCellWithIdentifier:SFTextViewCellID forIndexPath:indexPath];
         cell.searchModel = model;
         return cell;
     }
     
-    if (model.type == 5) {
-        SFExpenseCell * cell = [tableView dequeueReusableCellWithIdentifier:SFExpenseCellID forIndexPath:indexPath];
-        cell.model = model;
+    if (model.type == 3) {
+        SFPhotoSelectCell * cell = [tableView dequeueReusableCellWithIdentifier:SFPhotoSelectCellID forIndexPath:indexPath];
+        [cell cellImage:nil withIsEdit:NO withCmodel:nil withArr:self.imageArray];
         cell.delegate = self;
         return cell;
     }
-
-    SFExpenseTitleCell * cell = [tableView dequeueReusableCellWithIdentifier:SFExpenseTitleCellID forIndexPath:indexPath];
-    if (indexPath.section==2&&indexPath.row==5) {
-        if ([self.title containsString:@"支出"]) {
-            model.title = @"客户";
-        }else{
-            model.title = @"商家";
+    
+    if (model.type == 2 || model.type == 4) {
+        SFExpenseCell * cell = [tableView dequeueReusableCellWithIdentifier:SFExpenseCellID forIndexPath:indexPath];
+        cell.model = model;
+        if (model.type == 4) {
+            cell.delegate  = self;
         }
         
+        return cell;
     }
+    
+    SFExpenseTitleCell * cell = [tableView dequeueReusableCellWithIdentifier:SFExpenseTitleCellID forIndexPath:indexPath];
     cell.model = model;
-
+    
     @weakify(self)
     [cell setInputChacneClick:^(NSString * _Nonnull value) {
         @strongify(self)
         
-        [self calculatedAmount];
+        
     }];
     return cell;
 }
